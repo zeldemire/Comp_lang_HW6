@@ -1,0 +1,5 @@
+/home/zach/RiderProjects/HW6/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/zach/RiderProjects/HW6/bin/Debug/HW6.exe.mdb
+/home/zach/RiderProjects/HW6/bin/Debug/HW6.exe
+/home/zach/RiderProjects/HW6/obj/Debug/HW6.exe
+/home/zach/RiderProjects/HW6/obj/Debug/HW6.exe.mdb
