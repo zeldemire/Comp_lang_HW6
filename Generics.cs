@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace HW6 {
     class Generics {
@@ -67,68 +68,31 @@ namespace HW6 {
 
 	    public static bool Contains<T>(IEnumerable<T> items, T value)
 	    {
-		    bool found = false;
-		    foreach (T v in items)
-		    {
-			    if (v.Equals(value))
-			    {
-				    found = true;
-				    break;
-			    }
-		    }
-		    return found;
+		    return items.Contains(value);
 	    }
 
 	    public static int CountIf<T>(IEnumerable<T> items, Predicate<T> predicate)
 	    {
-		    int count = 0;
-
-		    foreach (T item in items)
-		    {
-			    if (predicate(item))
-			    {
-				    count++;
-			    }
-		    }
-
-		    return count;
+		    return items.Count(item => predicate(item));
 	    }
 
 
 	    public static List<T> Filter<T>(IEnumerable<T> items, Predicate<T> predicate)
 	    {
-		    List<T> result = new List<T>();
-
-		    foreach (T item in items)
-		    {
-			    if (predicate(item))
-			    {
-				    result.Add(item);
-			    }
-		    }
-
-		    return result;
+		    return items.Where(item => predicate(item)).ToList();
 	    }
 
-	    public static void TransformIf<T>(ref T[] items, Func<T, T> func, Predicate<T> predicate)
+	    public static void TransformIf<T>(T[] items, Func<T, T> func, Predicate<T> predicate)
 	    {
-		    List<T> result = new List<T>();
-
-
-		    foreach (T item in items)
+		    for (int i = 0; i < items.Length; i++)
 		    {
-			    if (predicate(item))
+			    if (predicate(items[i]))
 			    {
-				    result.Add(func(item));
-			    }
-			    else
-			    {
-				    result.Add(item);
+				    items[i] = func(items[i]);
 			    }
 		    }
-
-		    items = result.ToArray();
 	    }
+
         static void Main(string[] args) {
             String[] strings1 = new String[] { "a", "b", "ac" };
             String[] strings2 = new String[] { "abc", "34b", "ABDac" };
@@ -170,10 +134,10 @@ namespace HW6 {
 
 	        Console.WriteLine("------------TransformIf------------");
 	        Display(ints2);
-	        TransformIf(ref ints2, x => 0, x => x < 0);			// replace negative elements with 0
+	        TransformIf(ints2, x => 0, x => x < 0);			// replace negative elements with 0
 	        Display(ints2);
 	        Display(strings2);
-	        TransformIf(ref strings2, x => x.Substring(0, 2), x => x.Length > 2);	// Truncate long strings
+	        TransformIf(strings2, x => x.Substring(0, 2), x => x.Length > 2);	// Truncate long strings
 	        Display(strings2);
 
 /***************************
