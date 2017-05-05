@@ -66,20 +66,50 @@ namespace HW6 {
             return found;
         }
 
+
 	    public static bool Contains<T>(IEnumerable<T> items, T value)
 	    {
-		    return items.Contains(value);
+		    bool found = false;
+		    foreach (T v in items)
+		    {
+			    if (v.Equals(value))
+			    {
+				    found = true;
+				    break;
+			    }
+		    }
+		    return found;
 	    }
 
 	    public static int CountIf<T>(IEnumerable<T> items, Predicate<T> predicate)
 	    {
-		    return items.Count(item => predicate(item));
+		    int count = 0;
+
+		    foreach (T item in items)
+		    {
+			    if (predicate(item))
+			    {
+				    count++;
+			    }
+		    }
+
+		    return count;
 	    }
 
 
 	    public static List<T> Filter<T>(IEnumerable<T> items, Predicate<T> predicate)
 	    {
-		    return items.Where(item => predicate(item)).ToList();
+		    List<T> result = new List<T>();
+
+		    foreach (T item in items)
+		    {
+			    if (predicate(item))
+			    {
+				    result.Add(item);
+			    }
+		    }
+
+		    return result;
 	    }
 
 	    public static void TransformIf<T>(T[] items, Func<T, T> func, Predicate<T> predicate)
