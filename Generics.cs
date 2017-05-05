@@ -125,7 +125,7 @@ namespace HW6 {
 
         static void Main(string[] args) {
             String[] strings1 = new String[] { "a", "b", "ac" };
-            String[] strings2 = new String[] { "abc", "34b", "ABDac" };
+            String[] strings2 = new String[] { "hello", "world", "abc" };
             HashSet<string> strings3 = new HashSet<string>();
             strings3.Add("ABC");
             strings3.Add("abc");
@@ -133,7 +133,7 @@ namespace HW6 {
             strings3.Add("wxyz");
 
             int[] ints1 = new int[] { 1, 2, 3, 4, -5 };
-            int[] ints2 = new int[] { 1, -2, 2, -1, 10 };
+            int[] ints2 = new int[] { -3, -2, -1, 0, 1, 2, 3 };
 
             Point[] pts1 = new Point[] { new Point(2, 3), new Point(4, 3), new Point(4, 9) };
 
@@ -164,10 +164,10 @@ namespace HW6 {
 
 	        Console.WriteLine("------------TransformIf------------");
 	        Display(ints2);
-	        TransformIf(ints2, x => 0, x => x < 0);			// replace negative elements with 0
+	        TransformIf(ints2, x => x*x, x => x < 0);			// replace negative elements with 0
 	        Display(ints2);
 	        Display(strings2);
-	        TransformIf(strings2, x => x.Substring(0, 2), x => x.Length > 2);	// Truncate long strings
+	        TransformIf(strings2, x => x.Substring(0, 3), x => x.Length > 3);	// Truncate long strings
 	        Display(strings2);
 
 /***************************
